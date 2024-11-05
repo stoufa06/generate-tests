@@ -1,0 +1,8 @@
+# Composer dependency directory
+/vendor/
+
+# Composer lock file
+/composer.lock
+
+# Environment variables file
+/.env

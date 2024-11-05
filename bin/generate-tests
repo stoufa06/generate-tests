@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+
+use Stoufa06\GenerateTests\TestGenerator;
+
+$options = getopt("", ["src::", "tests::", "backup::", "exclude::", "marker::"]);
+
+$srcDirectory = $options['src'] ?? __DIR__ . '/../src';
+$testsDirectory = $options['tests'] ?? __DIR__ . '/../tests';
+$backupListFile = $options['backup'] ?? __DIR__ . '/../backup_list.txt';
+$excludedFoldersFile = $options['exclude'] ?? __DIR__ . '/../excluded_folders.txt';
+$checkMarker = isset($options['marker']) ? filter_var($options['marker'], FILTER_VALIDATE_BOOLEAN) ?? true : true;
+
+$generator = new TestGenerator($srcDirectory, $testsDirectory, $backupListFile, $excludedFoldersFile, $checkMarker);
+$generator->generate();
