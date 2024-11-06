@@ -15,5 +15,8 @@
     ],
     "config": {
         "optimize-autoloader": true
+    },
+    "scripts": {
+        "test": "phpunit tests"
     }
 }
