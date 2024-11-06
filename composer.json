@@ -18,5 +18,12 @@
     },
     "scripts": {
         "test": "phpunit tests"
-    }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mustapha A",
+            "homepage": "https://github.com/stoufa06/"
+        }
+    ]
 }
