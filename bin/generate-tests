@@ -1,16 +1,21 @@
 #!/usr/bin/env php
 <?php
 
+include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
 use Stoufa06\GenerateTests\TestGenerator;
 
-$options = getopt("", ["src::", "tests::", "backup::", "exclude::", "marker::"]);
+// Fetch options with an additional base directory option
+$options = getopt("", ["src::", "tests::", "backup::", "exclude::", "marker::", "baseDir::"]);
 
-$srcDirectory = $options['src'] ?? __DIR__ . '/../src';
-$testsDirectory = $options['tests'] ?? __DIR__ . '/../tests';
-$backupListFile = $options['backup'] ?? __DIR__ . '/../backup_list.txt';
-$excludedFoldersFile = $options['exclude'] ?? __DIR__ . '/../excluded_folders.txt';
+// Get options and determine paths; assume current working directory if not provided
+$srcDirectory = $options['src'] ?? 'src';
+$testsDirectory = $options['tests'] ?? 'tests';
+$backupListFile = $options['backup'] ?? 'backup_list.txt';
+$excludedFoldersFile = $options['exclude'] ?? 'excluded_folders.txt';
 $checkMarker = isset($options['marker']) ? filter_var($options['marker'], FILTER_VALIDATE_BOOLEAN) ?? true : true;
+$baseDirectory = $options['baseDir'] ?? getcwd();
 
-$generator = new TestGenerator($srcDirectory, $testsDirectory, $backupListFile, $excludedFoldersFile, $checkMarker);
+// Initialize and run the test generator
+$generator = new TestGenerator($srcDirectory, $testsDirectory, $backupListFile, $excludedFoldersFile, $checkMarker, $baseDirectory);
 $generator->generate();
