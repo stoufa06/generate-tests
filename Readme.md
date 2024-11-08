@@ -7,7 +7,7 @@ This package helps automate the creation of PHPUnit test files for your PHP proj
 To install the package, you’ll need [Composer](https://getcomposer.org/). Run the following command in your terminal:
 
 ```bash
-composer require stoufa06/generate-tests
+composer require stoufa06/generate-tests --dev
 ```
 
 ## Usage
